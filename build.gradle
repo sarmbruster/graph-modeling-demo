@@ -20,8 +20,8 @@ dependencies {
     testCompile group: "org.codehaus.groovy", name: "groovy-all", version: "2.1.6"
     compile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion
     compile group: 'org.neo4j', name: 'neo4j-lucene-index', version: neo4jVersion
-    //compile group: 'org.neo4j', name: 'server-api', version: neo4jVersion
-    //compile group: 'org.neo4j.app', name: 'neo4j-server', version: neo4jVersion
+    compile group: 'org.neo4j', name: 'server-api', version: neo4jVersion
+    compile group: 'org.neo4j.app', name: 'neo4j-server', version: neo4jVersion
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
     testCompile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion, classifier: 'tests'
     //testCompile group: 'org.neo4j.app', name: 'neo4j-server', version: neo4jVersion, classifier: 'tests'
