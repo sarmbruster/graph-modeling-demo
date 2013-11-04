@@ -1,7 +1,5 @@
 package org.neo4j.example.modeling
 
-import org.neo4j.helpers.collection.IteratorUtil
-
 class UserRepositorySpec extends GraphSpec {
 
     UserRepository repo
@@ -9,7 +7,6 @@ class UserRepositorySpec extends GraphSpec {
     def setup() {
         repo = new UserRepository()
         repo.setCypherExecutor(cypherExecutor)
-
     }
 
     def "should create users"() {
@@ -18,7 +15,7 @@ class UserRepositorySpec extends GraphSpec {
         def userId = repo.addUser("Stefan")
 
         then: "verify that user has been created using cypher"
-        IteratorUtil.single(executionEngine.execute("start n=node({id}) return n.name as name", [id: userId])).name == 'Stefan'
+        "start n=node({id}) return n.name as name".cypher(id: userId)[0].name == 'Stefan'
 
         and: "verify that user has been created using API"
         graphDatabaseService.getNodeById(userId).getProperty("name") == "Stefan"
