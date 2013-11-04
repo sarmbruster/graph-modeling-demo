@@ -4,11 +4,15 @@ import org.neo4j.helpers.collection.IteratorUtil
 
 class UserRepositorySpec extends GraphSpec {
 
-    def "can create users"() {
+    UserRepository repo
 
-        setup:
-        def repo = new UserRepository()
+    def setup() {
+        repo = new UserRepository()
         repo.setCypherExecutor(cypherExecutor)
+
+    }
+
+    def "should create users"() {
 
         when:
         def userId = repo.addUser("Stefan")
@@ -20,4 +24,13 @@ class UserRepositorySpec extends GraphSpec {
         graphDatabaseService.getNodeById(userId).getProperty("name") == "Stefan"
 
     }
+
+    def "should find a user"() {
+        setup:
+        def userId = repo.addUser("Stefan")
+
+        expect:
+        repo.findUser("Stefan") == userId
+    }
+
 }
